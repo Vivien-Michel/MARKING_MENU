@@ -7,8 +7,11 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.event.MouseInputAdapter;
+
+import tp.mm.ui.MarkingMenuUI;
 
 public class MarkingMenuListener extends MouseInputAdapter{
 	
@@ -16,6 +19,8 @@ public class MarkingMenuListener extends MouseInputAdapter{
 	State state=State.IDLE;
 	Point current;
 	Point origin;
+	private JPanel panel;
+	MarkingMenuUI markingMenuUI;
 	List<Point> buffer = new ArrayList<Point>();
 	private final int TIMER=500;
 	private Timer timer = new Timer();
@@ -26,6 +31,12 @@ public class MarkingMenuListener extends MouseInputAdapter{
 			//Affichage menu
 		}
 	};
+	
+	public MarkingMenuListener(MarkingMenuUI markingMenuUI, JPanel panel){
+		this.markingMenuUI = markingMenuUI;
+		this.panel=panel;
+	}
+	
 	@Override
 	public void mousePressed(MouseEvent event){
 		
@@ -34,7 +45,10 @@ public class MarkingMenuListener extends MouseInputAdapter{
 				if(SwingUtilities.isRightMouseButton(event)){
 					origin=event.getPoint();
 					state=State.PRESS;
-					timer.schedule(tt, TIMER);
+					markingMenuUI.setRectangle(origin);
+					System.out.println("PRESSED");
+					panel.repaint();
+					//timer.schedule(tt, TIMER);
 				}
 				break;
 		case PRESS:state=State.IDLE;break;
@@ -85,11 +99,14 @@ public class MarkingMenuListener extends MouseInputAdapter{
 				tt.cancel();
 				timer.purge();
 				state=State.IDLE;
+				buffer.clear();
 				break;
 			case DRAG:
 				tt.cancel();
 				timer.purge();
 				buffer.add(current);
+				
+				buffer.clear();
 				state=State.IDLE;
 				break;
 			default:
