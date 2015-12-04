@@ -50,7 +50,7 @@ public class MarkingMenuListener extends MouseInputAdapter{
 			System.out.println(markingMenuUI.selectedItem(buffer));
 			origin = current;
 			state=State.PRESS;
-			//markingMenuUI.setRectangle(origin);
+			markingMenuUI.setRectangle(origin);
 			panel.repaint();
 		}
 	};
@@ -98,6 +98,7 @@ public class MarkingMenuListener extends MouseInputAdapter{
 				futur.cancel(false);
 				buffer.add(current);
 				int size=buffer.size();
+				//Calcul de l'angle
 				if(size>=8){
 					Point p1 = buffer.get(size-8);
 					Point p2 = buffer.get(size-5);
@@ -120,8 +121,7 @@ public class MarkingMenuListener extends MouseInputAdapter{
 					
 					double cosAngle=dot(x1,y1,x2,y2);
 					if(cosAngle<ANGLE_MIN)
-						System.out.println(cosAngle);
-					//Vect2
+						markingMenuUI.selectedItem(buffer);
 				}
 				state=State.DRAG;
 				futur=task.schedule(selection, TIMER_SELECT, TimeUnit.MILLISECONDS);
