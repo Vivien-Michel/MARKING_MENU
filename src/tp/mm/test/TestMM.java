@@ -1,12 +1,12 @@
 package tp.mm.test;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.TextArea;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -28,17 +28,59 @@ public class TestMM {
 				JFrame frame = new JFrame();
 				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame.setMinimumSize(new Dimension(800,600));
-				List<String> itemName=new ArrayList<String>();
-				itemName.add("Copier");
-				itemName.add("Coller");
-				itemName.add("Couper");
-				itemName.add("Enregistrer");
-				final MarkingMenuUI menu = new MarkingMenuUI(4,itemName);
+				
+				TextArea t = new TextArea();
+				frame.add(t,BorderLayout.NORTH);
+				
+				Action[] actions={ new Action(t,"Salutation"){
+										Action[] actions={
+												new Action(getComponent(), "Hello"){
+													public void action(){
+														((TextArea) getComponent()).append("Hello ");
+													}
+												},
+												new Action(getComponent(), "Bonjour"){
+													public void action(){
+														((TextArea) getComponent()).append("Bonjour ");
+													}
+												},
+												new Action(getComponent(), "Salut"){
+													public void action(){
+														((TextArea) getComponent()).append("Salut ");
+													}
+												},
+												new Action(getComponent(), "Hi"){
+													public void action(){
+														((TextArea) getComponent()).append("Hi ");
+													}
+												}
+											
+										};
+										public Action[] getActions() {
+											return actions;
+										} 
+									},
+									new Action(t,"World"){
+										public void action(){
+											((TextArea) getComponent()).append("World ");
+										}
+									},
+									new Action(t,"I'm"){
+										public void action(){
+											((TextArea) getComponent()).append("I'm ");
+										}
+									},
+									new Action(t,"Happy"){
+										public void action(){
+											((TextArea) getComponent()).append("Happy ");
+										}
+									}
+						
+								};
+				
+				final MarkingMenuUI menu = new MarkingMenuUI(actions);
 				
 				panel = new JPanel(){
-					/**
-					 * 
-					 */
 					private static final long serialVersionUID = 1L;
 
 					public void paintComponent(Graphics g){
