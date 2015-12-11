@@ -36,10 +36,10 @@ public class MarkingMenuUI {
 	}
 	
 	public void paint(Graphics2D g2){
+		g2.setColor(Color.black);
 		if(active){
 			int i =0;
 			for(java.util.Map.Entry<Integer, Rectangle> entry : items.entrySet()){
-				g2.setColor(Color.black);
 				Rectangle rect= entry.getValue();
 				g2.drawRect(rect.x, rect.y, rect.width, rect.height);
 				g2.drawString(actions[i].getName(), (int)(rect.getCenterX()-rect.width/4), (int)rect.getCenterY());
@@ -48,7 +48,6 @@ public class MarkingMenuUI {
 		}
 		for(int i =0; i<points.size()-1;i++){
 			if(points.size()>=2){
-				g2.setColor(Color.black);
 				g2.drawLine(points.get(i).x,points.get(i).y, points.get(i+1).x,points.get(i+1).y);
 			}
 		}
