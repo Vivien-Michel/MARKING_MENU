@@ -101,6 +101,7 @@ public class MarkingMenuListener extends MouseInputAdapter{
 				break;
 			case DRAG:
 				futur.cancel(false);
+				taskAfficher.cancel(false);
 				buffer.add(current);
 				markingMenuUI.setpoints(buffer);
 				double cosAngle=cosAngleCalcul(buffer);
@@ -111,6 +112,7 @@ public class MarkingMenuListener extends MouseInputAdapter{
 				}
 				state=State.DRAG;
 				panel.repaint();
+				taskAfficher=task.schedule(afficher, TIMER_AFF, TimeUnit.MILLISECONDS);
 				futur=task.schedule(selection, TIMER_SELECT, TimeUnit.MILLISECONDS);
 				break;
 			default:

@@ -65,14 +65,34 @@ public class TestMM {
 											((TextArea) getComponent()).append("World ");
 										}
 									},
-									new Action(t,"I'm"){
+									new Action(t,"Enter"){
 										public void action(){
-											((TextArea) getComponent()).append("I'm ");
+											((TextArea) getComponent()).append("\n ");
 										}
 									},
 									new Action(t,"Happy"){
 										public void action(){
 											((TextArea) getComponent()).append("Happy ");
+										}
+									},
+									new Action(t,"Happy2"){
+										public void action(){
+											((TextArea) getComponent()).append("Happy2 ");
+										}
+									},
+									new Action(t,"Happy3"){
+										public void action(){
+											((TextArea) getComponent()).append("Happy3 ");
+										}
+									},
+									new Action(t,"Happy4"){
+										public void action(){
+											((TextArea) getComponent()).append("Happy4 ");
+										}
+									},
+									new Action(t,"Happy5"){
+										public void action(){
+											((TextArea) getComponent()).append("Happy5 ");
 										}
 									}
 						

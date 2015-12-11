@@ -17,7 +17,7 @@ public class MarkingMenuUI {
 	private static final int WIDTH = 100;
 	private static final int HEIGHT = 100;
 	private double ANGLE;
-	private static final int RAYON=105;
+	private static final int RAYON=150;
 	private boolean active = false;
 	private Action[] actions;
 	private Action[] originalActions;
